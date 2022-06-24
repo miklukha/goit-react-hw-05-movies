@@ -1,3 +1,11 @@
+import { TrendingList } from 'components/TrendingList';
+import { Title } from './Home.styled';
+
 export function Home() {
-  return <div>HOME</div>;
+  return (
+    <>
+      <Title>Trending today</Title>
+      <TrendingList />
+    </>
+  );
 }

@@ -1,4 +1,4 @@
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 // import {
 //   getTrending,
 //   getMovieByQuery,
@@ -10,22 +10,19 @@ import { Routes, Route, Link } from 'react-router-dom';
 import { Home } from 'components/Home';
 import { Movies } from 'components/Movies';
 import { Header } from 'components/Header';
+import { Container } from './App.styled';
 
 export function App() {
   return (
     <>
-      {/* <nav>
-        <Link to="/">Home</Link>
-        <Link to="/movies">Movies</Link>
-      </nav> */}
       <Header />
-      {/* <Navigation /> */}
-      {/* </Header> */}
 
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/movies" element={<Movies />} />
-      </Routes>
+      <Container>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/movies" element={<Movies />} />
+        </Routes>
+      </Container>
     </>
   );
 }
