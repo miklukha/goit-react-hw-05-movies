@@ -62,8 +62,8 @@ export const GlobalStyles = css`
     margin: 0;
   }
 
-  a {
+  /* a {
     text-decoration: none;
     color: inherit;
-  }
+  } */
 `;

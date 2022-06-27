@@ -30,7 +30,7 @@ export async function getMovieReviews(id) {
   return response.data;
 }
 
-export async function getGenres() {
-  const response = await axios.get(`/genre/movie/list`);
-  return response.data;
-}
+// export async function getGenres() {
+//   const response = await axios.get(`/genre/movie/list`);
+//   return response.data;
+// }

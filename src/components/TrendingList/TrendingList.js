@@ -21,7 +21,7 @@ export function TrendingList() {
   return (
     <List>
       {movies.map(({ id, title }) => {
-        return <TrendingMovieItem key={id} name={title} />;
+        return <TrendingMovieItem key={id} id={id} name={title} />;
       })}
     </List>
   );

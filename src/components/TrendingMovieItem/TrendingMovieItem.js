@@ -1,10 +1,10 @@
 import { Item } from './TrendingMovieItem.styled';
+import { Link } from 'react-router-dom';
 
-export function TrendingMovieItem({ name }) {
+export function TrendingMovieItem({ id, name }) {
   return (
     <Item>
-      {/* <Link></Link> */}
-      {name}
+      <Link to={`movies/${id}`}>{name}</Link>
     </Item>
   );
 }
