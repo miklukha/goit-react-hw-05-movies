@@ -1,38 +1,36 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 import { Input, Button } from './Movies.styled';
 
 export function Movies() {
-  const [query, setQuery] = useState('');
+  const [searchParams, setSearchParams] = useSearchParams();
+  // const query = searchParams.get('query') ?? '';
 
-  const handleChange = e => {
-    const query = e.currentTarget.value.trim();
-    setQuery(query);
-  };
+  // const [query, setQuery] = useState('');
 
   const handleSubmit = e => {
     e.preventDefault();
+    const query = e.target.input.value.trim();
 
-    if (query === '') {
-      alert('Enter your query');
+    if (!query) {
+      alert('Enter film');
       return;
     }
 
-    console.log(query);
-    setQuery('');
+    setSearchParams({ query });
   };
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <Input
         type="text"
         autoComplete="off"
         autoFocus
-        value={query}
-        onChange={handleChange}
+        name="input"
+        // value={query}
+        // onChange={handleChange}
       />
-      <Button type="submit" onClick={handleSubmit}>
-        Search
-      </Button>
+      <Button type="submit">Search</Button>
     </form>
   );
 }
