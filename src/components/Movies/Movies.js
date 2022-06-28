@@ -1,10 +1,11 @@
 // import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { Input, Button } from './Movies.styled';
+import { MoviesList } from 'components/MoviesList';
 
 export function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
-  // const query = searchParams.get('query') ?? '';
+  const query = searchParams.get('query') ?? '';
 
   // const [query, setQuery] = useState('');
 
@@ -18,19 +19,28 @@ export function Movies() {
     }
 
     setSearchParams({ query });
+    // renderList();
   };
 
+  // const renderList = async () => {
+  //   const a = await getMovieByQuery(query);
+  //   console.log(a);
+  // };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <Input
-        type="text"
-        autoComplete="off"
-        autoFocus
-        name="input"
-        // value={query}
-        // onChange={handleChange}
-      />
-      <Button type="submit">Search</Button>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <Input
+          type="text"
+          autoComplete="off"
+          autoFocus
+          name="input"
+          // value={query}
+          // onChange={handleChange}
+        />
+        <Button type="submit">Search</Button>
+      </form>
+      {query && <MoviesList query={query} />}
+    </>
   );
 }

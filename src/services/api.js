@@ -29,8 +29,3 @@ export async function getMovieReviews(id) {
   const response = await axios.get(`/movie/${id}/reviews`);
   return response.data;
 }
-
-// export async function getGenres() {
-//   const response = await axios.get(`/genre/movie/list`);
-//   return response.data;
-// }
