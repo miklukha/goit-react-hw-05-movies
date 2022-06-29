@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkreact_homework_template=self.webpackChunkreact_homework_template||[]).push([[619,264],{9619:function(e,n,t){t.r(n),t.d(n,{TrendingMovieItem:function(){return o}});var r=t(1264),c=t(501),i=t(184);function o(e){var n=e.id,t=e.name;return(0,i.jsx)(r.Item,{children:(0,i.jsx)(c.rU,{to:"movies/".concat(n),children:t})})}},1264:function(e,n,t){t.r(n),t.d(n,{Item:function(){return i}});var r,c=t(168),i=t(9958).Z.li(r||(r=(0,c.Z)(["\n  font-size: 18px;\n"])))}}]);
+//# sourceMappingURL=619.c289d5aa.chunk.js.map
