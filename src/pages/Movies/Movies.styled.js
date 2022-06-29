@@ -5,10 +5,17 @@ export const Input = styled.input`
   height: 30px;
 
   margin-right: 10px;
+  margin-bottom: 10px;
 `;
 
 export const Button = styled.button`
-  width: 50px;
+  width: 70px;
   height: 30px;
-  background-color: gray;
+  border-radius: 5px;
+  background-color: #dbd9d0;
+
+  &:hover,
+  &:focus {
+    background-color: #bfbebb;
+  }
 `;

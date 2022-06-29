@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMovieReviews } from 'services/api';
+import { Item, Label, Text } from './Reviews.styled';
 
 export function Reviews() {
   const { movieId } = useParams();
@@ -23,11 +24,11 @@ export function Reviews() {
   ) : (
     <ul>
       {reviews.map(({ author, content, id }) => (
-        <li key={id} style={{ margin: '30px' }}>
-          <span>Author: </span>
+        <Item key={id}>
+          <Label>Author: </Label>
           <span>{author}</span>
-          <p>{content}</p>
-        </li>
+          <Text>{content}</Text>
+        </Item>
       ))}
     </ul>
   );

@@ -2,11 +2,11 @@ import { Routes, Route } from 'react-router-dom';
 import { SharedLayout } from 'components/SharedLayout';
 import { createAsyncComponent } from 'helpers/createAsyncComponent';
 
-const Home = createAsyncComponent('Home');
-const Movies = createAsyncComponent('Movies');
-const MovieDetails = createAsyncComponent('MovieDetails');
-const Cast = createAsyncComponent('Cast');
-const Reviews = createAsyncComponent('Reviews');
+const Home = createAsyncComponent('pages', 'Home');
+const Movies = createAsyncComponent('pages', 'Movies');
+const MovieDetails = createAsyncComponent('pages', 'MovieDetails');
+const Cast = createAsyncComponent('components', 'Cast');
+const Reviews = createAsyncComponent('components', 'Reviews');
 
 export function App() {
   return (

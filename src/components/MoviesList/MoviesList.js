@@ -1,3 +1,4 @@
+import { List } from 'components/TrendingList/TrendingList.styled';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as API from 'services/api';
@@ -19,7 +20,7 @@ export function MoviesList({ query }) {
   const location = useLocation();
 
   return (
-    <ul>
+    <List>
       {movies.map(({ original_title, id }) => (
         <li key={id}>
           <Link to={`/movies/${id}`} state={{ from: location }}>
@@ -27,6 +28,6 @@ export function MoviesList({ query }) {
           </Link>
         </li>
       ))}
-    </ul>
+    </List>
   );
 }

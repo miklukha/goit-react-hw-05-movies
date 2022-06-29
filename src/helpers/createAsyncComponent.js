@@ -1,9 +1,8 @@
 import { lazy } from 'react';
 
-export const createAsyncComponent = componentName => {
-  // const componentName = path.match(/[a-zA-Z]+$/)[0];
+export const createAsyncComponent = (folder, componentName) => {
   return lazy(() =>
-    import(`components/${componentName}`).then(module => ({
+    import(`../${folder}/${componentName}`).then(module => ({
       ...module,
       default: module[componentName],
     }))

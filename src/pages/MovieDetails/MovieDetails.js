@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'services/api';
 import { BackLink } from 'components/BackLink/BackLink';
+import { Article, Title, Label, Item } from './MovieDetails.styled';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w300';
 
@@ -40,7 +41,7 @@ export function MovieDetails() {
     <>
       <BackLink href={backLinkHref} />
 
-      <article style={{ borderBottom: '1px solid black' }}>
+      <Article>
         <img
           src={
             poster_path
@@ -49,23 +50,31 @@ export function MovieDetails() {
           }
           alt={original_title}
         />
-        <h2>{original_title}</h2>
-        <p>User score: </p>
-        <span>{Math.round(vote_average * 10)}%</span>
-        <p>Overview</p>
-        <p>{overview}</p>
-        <p>Genres</p>
-        <span>{getGenres()}</span>
-      </article>
+        <Title>{original_title}</Title>
+        <ul>
+          <Item>
+            <Label>User score: </Label>
+            <span>{Math.round(vote_average * 10)}%</span>
+          </Item>
+          <Item>
+            <Label>Overview: </Label>
+            <span>{overview}</span>
+          </Item>
+          <Item>
+            <Label>Genres: </Label>
+            <span>{getGenres()}</span>
+          </Item>
+        </ul>
+      </Article>
 
-      <p>Additional Information</p>
-      <ul style={{ borderBottom: '1px solid black' }}>
-        <li>
+      <Label>Additional Information</Label>
+      <ul>
+        <Item>
           <Link to="cast">Cast</Link>
-        </li>
-        <li>
+        </Item>
+        <Item>
           <Link to="reviews">Reviews</Link>
-        </li>
+        </Item>
       </ul>
       <Outlet />
     </>

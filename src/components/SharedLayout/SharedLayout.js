@@ -5,14 +5,11 @@ import { Container } from './SharedLayout.styled';
 
 export function SharedLayout() {
   return (
-    <>
+    <Container>
       <Header />
-
-      <Container>
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
-      </Container>
-    </>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
+    </Container>
   );
 }
