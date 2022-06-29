@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/499.139f8940.chunk.js","mappings":"gMAEaA,E,QAAOC,EAAAA,GAAH","sources":["components/TrendingList/TrendingList.styled.js"],"sourcesContent":["import styled from '@emotion/styled';\n\nexport const List = styled.ul`\n  padding-left: 15px;\n  list-style: circle;\n`;\n"],"names":["List","styled"],"sourceRoot":""}

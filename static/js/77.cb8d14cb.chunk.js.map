@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/77.cb8d14cb.chunk.js","mappings":"gMAEaA,E,QAAQC,EAAAA,GAAH","sources":["pages/Home/Home.styled.js"],"sourcesContent":["import styled from '@emotion/styled';\n\nexport const Title = styled.h1`\n  font-size: 32px;\n  font-weight: 500;\n\n  margin-bottom: 15px;\n`;\n"],"names":["Title","styled"],"sourceRoot":""}
