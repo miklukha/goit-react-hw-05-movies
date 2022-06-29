@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link, Outlet, useLocation } from 'react-router-dom';
 import { getMovieDetails } from 'services/api';
 import { BackLink } from 'components/BackLink/BackLink';
 
@@ -33,12 +33,14 @@ export function MovieDetails() {
     }
   };
 
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/';
+
   return (
     <>
-      <BackLink href="/" />
+      <BackLink href={backLinkHref} />
 
       <article style={{ borderBottom: '1px solid black' }}>
-        {/* {poster_path ? } */}
         <img
           src={
             poster_path

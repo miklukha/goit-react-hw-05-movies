@@ -5,13 +5,12 @@ import { MoviesList } from 'components/MoviesList';
 
 export function Movies() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const query = searchParams.get('query') ?? '';
-
-  // const [query, setQuery] = useState('');
+  const query = searchParams.get('query');
 
   const handleSubmit = e => {
     e.preventDefault();
-    const query = e.target.input.value.trim();
+    const form = e.target;
+    const query = form.input.value.trim();
 
     if (!query) {
       alert('Enter film');
@@ -19,25 +18,13 @@ export function Movies() {
     }
 
     setSearchParams({ query });
-    // renderList();
+    form.reset();
   };
-
-  // const renderList = async () => {
-  //   const a = await getMovieByQuery(query);
-  //   console.log(a);
-  // };
 
   return (
     <>
       <form onSubmit={handleSubmit}>
-        <Input
-          type="text"
-          autoComplete="off"
-          autoFocus
-          name="input"
-          // value={query}
-          // onChange={handleChange}
-        />
+        <Input type="text" autoComplete="off" autoFocus name="input" />
         <Button type="submit">Search</Button>
       </form>
       {query && <MoviesList query={query} />}
