@@ -12,6 +12,10 @@ export function MoviesList({ query }) {
     (async function getMovies() {
       try {
         const data = await API.getMovieByQuery(query);
+        if (data.results.length === 0) {
+          toast.error('Not found');
+          return;
+        }
         setMovies(data.results);
       } catch (error) {
         toast.error('Something wrong');
