@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieReviews } from 'services/api';
+import { toast } from 'react-toastify';
+import * as API from 'services/api';
 import { Item, Label, Text } from './Reviews.styled';
 
 export function Reviews() {
@@ -8,12 +9,12 @@ export function Reviews() {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    // loader and error (toastify)
     (async function getMovie() {
       try {
-        const reviews = await getMovieReviews(movieId);
+        const reviews = await API.getMovieReviews(movieId);
         setReviews(reviews.results);
       } catch (error) {
+        toast.error('Something wrong');
         console.log(error);
       }
     })();

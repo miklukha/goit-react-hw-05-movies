@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getMovieCredits } from 'services/api';
+import { toast } from 'react-toastify';
+import * as API from 'services/api';
 import { Title, Item, Label } from './Cast.styled';
 
 const IMG_URL = 'https://image.tmdb.org/t/p/w200';
@@ -10,13 +11,12 @@ export function Cast() {
   const [cast, setCast] = useState([]);
 
   useEffect(() => {
-    // loader and error (toastify)
     (async function getMovie() {
       try {
-        const movie = await getMovieCredits(movieId);
-        const cast = movie.cast;
-        setCast(cast);
+        const movie = await API.getMovieCredits(movieId);
+        setCast(movie.cast);
       } catch (error) {
+        toast.error('Something wrong');
         console.log(error);
       }
     })();

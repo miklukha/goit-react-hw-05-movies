@@ -1,7 +1,7 @@
-import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation } from 'react-router-dom';
-import { getMovieDetails } from 'services/api';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import * as API from 'services/api';
 import { BackLink } from 'components/BackLink/BackLink';
 import { Article, Title, Label, Item } from './MovieDetails.styled';
 
@@ -12,12 +12,12 @@ export function MovieDetails() {
   const [movie, setMovie] = useState('');
 
   useEffect(() => {
-    // loader and error (toastify)
     (async function getMovie() {
       try {
-        const movie = await getMovieDetails(movieId);
+        const movie = await API.getMovieDetails(movieId);
         setMovie(movie);
       } catch (error) {
+        toast.error('Something wrong');
         console.log(error);
       }
     })();

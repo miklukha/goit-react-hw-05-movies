@@ -1,7 +1,9 @@
-import { List } from 'components/TrendingList/TrendingList.styled';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { toast } from 'react-toastify';
 import * as API from 'services/api';
+import { List } from 'components/TrendingList/TrendingList.styled';
 
 export function MoviesList({ query }) {
   const [movies, setMovies] = useState([]);
@@ -12,6 +14,7 @@ export function MoviesList({ query }) {
         const data = await API.getMovieByQuery(query);
         setMovies(data.results);
       } catch (error) {
+        toast.error('Something wrong');
         console.log(error);
       }
     })();
@@ -31,3 +34,7 @@ export function MoviesList({ query }) {
     </List>
   );
 }
+
+MoviesList.propTypes = {
+  query: PropTypes.string.isRequired,
+};

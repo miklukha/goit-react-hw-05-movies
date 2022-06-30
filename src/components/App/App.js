@@ -25,10 +25,3 @@ export function App() {
     </>
   );
 }
-
-/*
- * toastify
- * propTypes
- * styles
- * hook
- */

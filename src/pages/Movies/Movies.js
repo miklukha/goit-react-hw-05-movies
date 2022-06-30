@@ -1,5 +1,5 @@
-// import { useState } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Input, Button } from './Movies.styled';
 import { MoviesList } from 'components/MoviesList';
 
@@ -13,7 +13,7 @@ export function Movies() {
     const query = form.input.value.trim();
 
     if (!query) {
-      alert('Enter film');
+      toast.info('Enter film');
       return;
     }
 
