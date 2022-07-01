@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { toast } from 'react-toastify';
 import * as API from 'services/api';
@@ -7,6 +7,7 @@ import { List } from 'components/TrendingList/TrendingList.styled';
 
 export function MoviesList({ query }) {
   const [movies, setMovies] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async function getMovies() {
@@ -18,11 +19,12 @@ export function MoviesList({ query }) {
         }
         setMovies(data.results);
       } catch (error) {
-        toast.error('Something wrong');
+        toast.error('Film is not found');
+        navigate('/', { replace: true });
         console.log(error);
       }
     })();
-  }, [query]);
+  }, [navigate, query]);
 
   const location = useLocation();
 

@@ -1,5 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import {
+  Link,
+  Outlet,
+  useLocation,
+  useParams,
+  useNavigate,
+} from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as API from 'services/api';
 import { BackLink } from 'components/BackLink/BackLink';
@@ -10,6 +16,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w300';
 export function MovieDetails() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState('');
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async function getMovie() {
@@ -17,11 +24,12 @@ export function MovieDetails() {
         const movie = await API.getMovieDetails(movieId);
         setMovie(movie);
       } catch (error) {
-        toast.error('Something wrong');
+        toast.error('Film is not found');
+        navigate('/', { replace: true });
         console.log(error);
       }
     })();
-  }, [movieId]);
+  }, [movieId, navigate]);
 
   const { poster_path, original_title, vote_average, overview, genres } = movie;
 
@@ -36,6 +44,7 @@ export function MovieDetails() {
 
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/';
+  const search = useRef(location.state?.from?.search);
 
   return (
     <>
@@ -70,10 +79,14 @@ export function MovieDetails() {
       <Label>Additional Information</Label>
       <ul>
         <Item>
-          <Link to="cast">Cast</Link>
+          <Link to="cast" state={{ from: `/movies${search.current}` }}>
+            Cast
+          </Link>
         </Item>
         <Item>
-          <Link to="reviews">Reviews</Link>
+          <Link to="reviews" state={{ from: `/movies${search.current}` }}>
+            Reviews
+          </Link>
         </Item>
       </ul>
       <Outlet />

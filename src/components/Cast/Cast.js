@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import * as API from 'services/api';
 import { Title, Item, Label } from './Cast.styled';
@@ -9,6 +9,7 @@ const IMG_URL = 'https://image.tmdb.org/t/p/w200';
 export function Cast() {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
+  const navigate = useNavigate();
 
   useEffect(() => {
     (async function getMovie() {
@@ -16,11 +17,12 @@ export function Cast() {
         const movie = await API.getMovieCredits(movieId);
         setCast(movie.cast);
       } catch (error) {
-        toast.error('Something wrong');
+        toast.error('Film is not found');
+        navigate('/', { replace: true });
         console.log(error);
       }
     })();
-  }, [movieId]);
+  }, [movieId, navigate]);
 
   return (
     <ul>
