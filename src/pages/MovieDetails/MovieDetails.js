@@ -43,8 +43,10 @@ export function MovieDetails() {
   };
 
   const location = useLocation();
+  console.log(location);
   const backLinkHref = location.state?.from ?? '/';
   const search = useRef(location.state?.from?.search);
+  console.log(search);
 
   return (
     <>
@@ -79,12 +81,18 @@ export function MovieDetails() {
       <Label>Additional Information</Label>
       <ul>
         <Item>
-          <Link to="cast" state={{ from: `/movies${search.current}` }}>
+          <Link
+            to="cast"
+            state={{ from: search.current ? `/movies${search.current}` : '/' }}
+          >
             Cast
           </Link>
         </Item>
         <Item>
-          <Link to="reviews" state={{ from: `/movies${search.current}` }}>
+          <Link
+            to="reviews"
+            state={{ from: search.current ? `/movies${search.current}` : '/' }}
+          >
             Reviews
           </Link>
         </Item>
