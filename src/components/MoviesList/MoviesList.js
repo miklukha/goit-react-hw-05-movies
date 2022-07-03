@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import slugify from 'slugify';
 import { toast } from 'react-toastify';
 import * as API from 'services/api';
 import { List } from 'components/TrendingList/TrendingList.styled';
@@ -8,6 +9,7 @@ import { List } from 'components/TrendingList/TrendingList.styled';
 export function MoviesList({ query }) {
   const [movies, setMovies] = useState([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     (async function getMovies() {
@@ -26,13 +28,16 @@ export function MoviesList({ query }) {
     })();
   }, [navigate, query]);
 
-  const location = useLocation();
+  const makeSlug = string => slugify(string, { lower: true });
 
   return (
     <List>
       {movies.map(({ original_title, id }) => (
         <li key={id}>
-          <Link to={`/movies/${id}`} state={{ from: location }}>
+          <Link
+            to={`/movies/${makeSlug(`${original_title} ${id}`)}`}
+            state={{ from: location }}
+          >
             {original_title}
           </Link>
         </li>
@@ -40,6 +45,7 @@ export function MoviesList({ query }) {
     </List>
   );
 }
+//<Link to={`movies/${makeSlug(`${name} ${id}`)}`}>{name}</Link>
 
 MoviesList.propTypes = {
   query: PropTypes.string.isRequired,

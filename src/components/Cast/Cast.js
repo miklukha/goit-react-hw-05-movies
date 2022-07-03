@@ -7,9 +7,10 @@ import { Title, Item, Label } from './Cast.styled';
 const IMG_URL = 'https://image.tmdb.org/t/p/w200';
 
 export function Cast() {
-  const { movieId } = useParams();
   const [cast, setCast] = useState([]);
   const navigate = useNavigate();
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
 
   useEffect(() => {
     (async function getMovie() {

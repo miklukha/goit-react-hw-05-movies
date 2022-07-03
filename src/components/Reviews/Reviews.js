@@ -5,9 +5,10 @@ import * as API from 'services/api';
 import { Item, Label, Text } from './Reviews.styled';
 
 export function Reviews() {
-  const { movieId } = useParams();
   const [reviews, setReviews] = useState([]);
   const navigate = useNavigate();
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
 
   useEffect(() => {
     (async function getMovie() {

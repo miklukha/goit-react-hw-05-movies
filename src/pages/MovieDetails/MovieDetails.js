@@ -14,9 +14,10 @@ import { Article, Title, Label, Item } from './MovieDetails.styled';
 const IMG_URL = 'https://image.tmdb.org/t/p/w300';
 
 export function MovieDetails() {
-  const { movieId } = useParams();
   const [movie, setMovie] = useState('');
   const navigate = useNavigate();
+  const { slug } = useParams();
+  const movieId = slug.match(/[a-z0-9]+$/)[0];
 
   useEffect(() => {
     (async function getMovie() {
@@ -43,10 +44,8 @@ export function MovieDetails() {
   };
 
   const location = useLocation();
-  console.log(location);
   const backLinkHref = location.state?.from ?? '/';
   const search = useRef(location.state?.from?.search);
-  console.log(search);
 
   return (
     <>
